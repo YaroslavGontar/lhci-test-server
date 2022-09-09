@@ -1,4 +1,13 @@
 const {createServer} = require('@lhci/server');
+const { Sequelize } = require('sequelize');
+
+console.log('Update DB server...');
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: 'db.sql'
+});
+
+sequelize.query('PRAGMA journal_mode=WAL;');
 
 console.log('Starting server...');
 createServer({
