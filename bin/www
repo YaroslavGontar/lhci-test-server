@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize');
 console.log('Update DB server...');
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: 'db.sql'
+  storage: '/tmp/db.sql'
 });
 
 sequelize.query('PRAGMA journal_mode=WAL;');
@@ -15,6 +15,6 @@ createServer({
   storage: {
     storageMethod: 'sql',
     sqlDialect: 'sqlite',
-    sqlDatabasePath: 'db.sql',
+    sqlDatabasePath: '/tmp/db.sql',
   },
 }).then(({port}) => console.log('LHCI listening on port', port));
